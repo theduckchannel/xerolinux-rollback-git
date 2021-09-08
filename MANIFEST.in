@@ -1,0 +1,14 @@
+include README.md
+include README.me
+include LICENSE
+include xerolinux-rollback.1
+include xerolinux-rollback.1.gz
+include xerolinux-rollback/*
+include xerolinux-rollback/locale/*
+include xerolinux-rollback/locale/pt/*
+include xerolinux-rollback/locale/pt/LC_MESSAGES/*
+
+include xerolinux-rollback/xerolinux-rollback.desktop
+include xerolinux-rollback/images/*
+include xerolinux-rollback/images/distros/*
+include xerolinux-rollback/scripts/*
