@@ -1,11 +1,16 @@
 import setuptools
 # ---------------------------------------------------
+# Requirements
+# python-pyqt5
+# python-pyqt5-stubs
+# python-pyqt5-sip
+# ttf-fira-code
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 
 setuptools.setup(
-    name='rollback',
+    name='xerolinux-rollback',
     version='0.3.6',
     author="The Duck Channel",
     author_email="fredcox@gmail.com",

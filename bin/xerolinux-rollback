@@ -1,11 +1,14 @@
 #!/usr/bin/python
-import rollback.mainwindow
 import sys
 import os
+from PyQt5 import QtWidgets
+from rollback.MainWindow import MainWindow
+
 
 if __name__ == '__main__':
     os.environ['QT_LOGGING_RULES'] = "qt5ct.debug=false"
-    window = rollback.mainwindow.MainWindow()
-    app = window.app
+    app = QtWidgets.QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
     sys.exit(app.exec_())
 
