@@ -3,14 +3,14 @@
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
   <property name="windowModality">
-   <enum>Qt::WindowModal</enum>
+   <enum>Qt::NonModal</enum>
   </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>953</width>
-    <height>590</height>
+    <height>559</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,9 +25,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>130</y>
+      <y>90</y>
       <width>931</width>
-      <height>361</height>
+      <height>401</height>
      </rect>
     </property>
     <property name="alternatingRowColors">
@@ -40,17 +40,17 @@
    <widget class="QLabel" name="logoLabel">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>10</x>
       <y>0</y>
-      <width>131</width>
-      <height>131</height>
+      <width>91</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="text">
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>images/xerolinux-logo128x128.png</pixmap>
+     <pixmap>images/xerolinux-logo96x96.png</pixmap>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -59,16 +59,16 @@
    <widget class="QLabel" name="mainLabel">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>30</y>
-      <width>801</width>
+      <x>110</x>
+      <y>10</y>
+      <width>711</width>
       <height>81</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Fira Code</family>
-      <pointsize>20</pointsize>
+      <pointsize>14</pointsize>
      </font>
     </property>
     <property name="text">
@@ -79,25 +79,6 @@
     </property>
     <property name="wordWrap">
      <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QProgressBar" name="progressBar">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>560</y>
-      <width>931</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="value">
-     <number>0</number>
-    </property>
-    <property name="format">
-     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="okPushButton">
@@ -112,7 +93,7 @@
     <property name="font">
      <font>
       <family>Fira Code Medium</family>
-      <pointsize>14</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="text">
@@ -141,7 +122,7 @@
     <property name="font">
      <font>
       <family>Fira Code Medium</family>
-      <pointsize>14</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="text">

@@ -3,6 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ab7be170-e96e-4532-850b-afa4f0faff2a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/xerolinux-rollback" beforeDir="false" afterPath="$PROJECT_DIR$/bin/xerolinux-rollback" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rollback/MainWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/rollback/MainWindow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rollback/main_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/rollback/main_window.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rollback/main_window.ui" beforeDir="false" afterPath="$PROJECT_DIR$/rollback/main_window.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
