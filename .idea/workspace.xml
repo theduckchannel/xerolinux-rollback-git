@@ -2,74 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab7be170-e96e-4532-850b-afa4f0faff2a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/rollback/MainWindow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/xerolinux-rollback.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/xerolinux-rollback.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/xerolinux-rollback" beforeDir="false" afterPath="$PROJECT_DIR$/bin/xerolinux-rollback" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/cpu.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/distros/arch.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/distros/centos.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/distros/debian.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/distros/deepin.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/distros/fedora.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/distros/garuda.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/distros/generic.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/distros/genericlogo.xcf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/distros/gentoo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/distros/linuxmint.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/distros/mandriva.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/distros/manjaro.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/distros/mxlinux.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/distros/opensuse.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/distros/pop.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/distros/rhel.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/distros/scientific.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/distros/slackware.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/distros/ubuntu.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/download.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/fan.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/gear.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/gonhang_icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/hddtempdefault.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/help.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/humidity.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/icon.xcf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/load.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/logo.xcf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/logo_readme.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/logoaboutbox.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/mainmenu.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/netcard.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/nvidia.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/nvme.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/power.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/pressure.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/radeon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/ram.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/screenshot.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/shot.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/ssd.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/swap.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/temp.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/unvalidated.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/upload.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/validated.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/visibility.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/weather_icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/weatherform.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/images/wind.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/list" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/mainwindow.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xerolinux_rollback.egg-info/PKG-INFO" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xerolinux_rollback.egg-info/SOURCES.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xerolinux_rollback.egg-info/dependency_links.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xerolinux_rollback.egg-info/not-zip-safe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xerolinux_rollback.egg-info/requires.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xerolinux_rollback.egg-info/top_level.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
