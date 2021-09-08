@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets, QtCore, QtGui
 import subprocess
-from xerolinux.rollback.api import StringUtil
-from xerolinux.rollback.api import FileUtil
+from rollback.api import StringUtil
+from rollback.api import FileUtil
 import sys
 import time
 import gettext
@@ -9,9 +9,7 @@ import os
 
 
 class MainWindow(QtWidgets.QMainWindow):
-    config = Config()
     app = QtWigets.QApplication(sys.argv)
-    keySkeleton = KeysSkeleton()
     # --------------------------------------------------------------
     # itens hide by default
     nvidiaGroupBox = QtWidgets.QGroupBox()
@@ -26,8 +24,8 @@ class MainWindow(QtWidgets.QMainWindow):
         # self.windowFlags |= QtCore.Qt.WindowStaysOnBottomHint
         # self.windowFlags |= QtCore.Qt.Tool
         # self.setWindowFlags(self.windowFlags)
+        # self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
         # -------------------------------------------------------------
-        self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
         # Central Widget and Global vertical Layout
         centralWidget = QtWidgets.QWidget(self)
         self.verticalLayout = QtWidgets.QVBoxLayout()
@@ -36,17 +34,12 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setCentralWidget(centralWidget)
         # -----------------------------------------------------------------------------
         # aboutBox
-        self.aboutBox = AboutBox(self)
+        # self.aboutBox = AboutBox(self)
 
-
-
-    def showAboutBox(self):
-        # self.aboutBox.exec_()
-        self.aboutBox.show()
-
+    # def showAboutBox(self):
+    # self.aboutBox.exec_()
+    #    self.aboutBox.show()
 
     @staticmethod
     def getScreenGeometry():
         return QtWidgets.QApplication.desktop().screenGeometry()
-
-

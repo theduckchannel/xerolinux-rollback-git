@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 
 setuptools.setup(
-    name='xerolinux_rollback',
+    name='rollback',
     version='0.3.6',
     author="The Duck Channel",
     author_email="fredcox@gmail.com",
@@ -20,7 +20,7 @@ setuptools.setup(
         "Operating System :: POSIX :: Linux",
     ],
     python_requires='>=3.8',
-    scripts=['bin/xerolinux.rollback'],
+    scripts=['bin/rollback'],
 
     install_requires=[
         'PyQt5'
