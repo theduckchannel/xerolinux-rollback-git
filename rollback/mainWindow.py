@@ -2,10 +2,14 @@ import os
 import sys
 import subprocess as sp
 import qdarkstyle
-from qtpy.QtCore import QSize
-from qtpy.QtWidgets import QMainWindow, QApplication, QPushButton
+from qtpy.QtWidgets import *
+from qtpy.QtGui import *
+from qtpy.QtCore import *
 from rollback.api import FileUtil
 from rollback.version import Version
+
+
+# Only for debug .setStyleSheet("background-color: red")
 
 
 class mainWindow(QMainWindow):
@@ -30,10 +34,36 @@ class mainWindow(QMainWindow):
         # setup stylesheet
         # the default system in qdarkstyle uses qtpy environment variable
         self.app.setStyleSheet(qdarkstyle.load_stylesheet())
-        button = QPushButton("Press Me!")
+        ###################################################
+        # Vertical Layout ###
+        verticalLayout = QVBoxLayout()
+        verticalLayout.setAlignment(Qt.AlignTop)
+        ####
+        # Horizontal Layout Logo and QLabel for message
+        topHorizontalLayout = QHBoxLayout()
+        ####
+        # Xerolinux Logotype Label
+        xerolinuxLabel = QLabel(self)
+        xerolinuxLabel.setPixmap(QPixmap(f'{FileUtil.getResourcePath()}/images/xerolinux-logo96x96.png'))
+        # xerolinuxLabel.setStyleSheet("background-color: red")
+        xerolinuxLabel.setFixedWidth(96)
+        topHorizontalLayout.addWidget(xerolinuxLabel)
+        ####
+        # Info Label
+        infoLabel = QLabel("Select the snapshot from the list below and click the rollback button.")
+        # infoLabel.setStyleSheet("background-color: red")
+        infoLabel.setFont(QFont('Fira Code', 14))
+        infoLabel.setWordWrap(True)
+
+        topHorizontalLayout.addWidget(infoLabel)
+        #
+
+        verticalLayout.addLayout(topHorizontalLayout)
 
         # Set the central widget of the Window.
-        # self.setCentralWidget(button)
+        centralWidget = QWidget()
+        centralWidget.setLayout(verticalLayout)
+        self.setCentralWidget(centralWidget)
         self.show()
         sys.exit(self.app.exec())
 
