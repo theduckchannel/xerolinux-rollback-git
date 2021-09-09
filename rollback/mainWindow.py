@@ -13,19 +13,11 @@ from rollback.version import Version
 
 
 class mainWindow(QMainWindow):
-    data = {
-        'ID': [],
-        'Date': [],
-        'User': [],
-        'Description': [],
-        'Cleanup': []
-    }
-
     commands = {
         'snapper-list': "snapper list | sed '1,3d'",
     }
-
     app = QApplication(sys.argv)
+    snapshotsTableWidget = QTableWidget()
 
     def __init__(self):
         super().__init__()
@@ -54,51 +46,51 @@ class mainWindow(QMainWindow):
         # infoLabel.setStyleSheet("background-color: red")
         infoLabel.setFont(QFont('Fira Code', 14))
         infoLabel.setWordWrap(True)
-
+        ###
         topHorizontalLayout.addWidget(infoLabel)
-        #
-
         verticalLayout.addLayout(topHorizontalLayout)
-
+        ############
+        # Snapshots List QTableWidget
+        self.snapshotsTableWidget.verticalHeader().hide()
+        verticalLayout.addWidget(self.snapshotsTableWidget)
+        ############
         # Set the central widget of the Window.
         centralWidget = QWidget()
         centralWidget.setLayout(verticalLayout)
         self.setCentralWidget(centralWidget)
+        ############
         self.show()
+        self.refreshSnapshotsList()
         sys.exit(self.app.exec())
 
     def exitApp(self):
-        print(f'Locale dir ====> {FileUtil.getResourcePath()}')
-        self.getSnapshotList()
         self.app.quit()
 
-    # def refreshSnapshotsList(self):
-    #     self.getSnapshotList()
-    #     self.tableWidget.setColumnCount(4)
-    #     horHeaders = []
-    #     self.tableWidget.setRowCount(len(self.data['ID']))
-    #     for n, key in enumerate(self.data):
-    #         horHeaders.append(key)
-    #         for m, item in enumerate(self.data[key]):
-    #             newitem = QtWidgets.QTableWidgetItem(item)
-    #             self.tableWidget.setItem(m, n, newitem)
-    #
-    #     self.tableWidget.setHorizontalHeaderLabels(horHeaders)
+    def refreshSnapshotsList(self):
+        lines = self.getSnapshotLines()
+        self.snapshotsTableWidget.setColumnCount(6)
+        # print(lines)
+        horHeaders = ['ID', 'Type', 'Date', 'User', 'Cleanup', 'Description']
+        self.snapshotsTableWidget.setRowCount(len(lines))
+        for idx, line in enumerate(lines):
+            col = line.split('|')
+            print(f'Index[{idx}] COL ===>  {col[0]}')
+            # ID
+            idItem = QTableWidgetItem(col[0])
+            self.snapshotsTableWidget.setItem(idx, 0, idItem)
+            # Type
+            typeItem = QTableWidgetItem(col[1])
+            self.snapshotsTableWidget.setItem(idx, 1, typeItem)
+            # Date
+            dateItem = QTableWidgetItem(col[3])
+            self.snapshotsTableWidget.setItem(idx, 2, dateItem)
 
-    def getSnapshotList(self):
+        self.snapshotsTableWidget.setHorizontalHeaderLabels(horHeaders)
+
+    def getSnapshotLines(self):
         output = sp.getoutput(self.commands['snapper-list'])
         lines = output.splitlines()
-        self.clearData()  # Clear data array
-        for line in lines:
-            # print(f'Line ===> {line}')
-            # split line
-            cols = line.split('|')
-            # print(f'cols ====> {cols}')
-            self.data['ID'].append(cols[0].rstrip())
-            self.data['Date'].append(cols[3].rstrip())
-            self.data['User'].append(cols[4].rstrip())
-            self.data['Cleanup'].append(cols[5].rstrip())
-            self.data['Description'].append(cols[6].rstrip())
+        return lines
 
     def clearData(self):
         for header in self.data:
