@@ -11,7 +11,6 @@ from xerolinux_rollback.version import Version
 
 # Only for debug .setStyleSheet("background-color: red")
 
-
 class mainWindow(QMainWindow):
     horHeaders = ['ID', 'Type', 'Date', 'User', 'Cleanup', 'Description']
     commands = {
@@ -47,8 +46,17 @@ class mainWindow(QMainWindow):
         # infoLabel.setStyleSheet("background-color: red")
         infoLabel.setFont(QFont('Fira Code', 14))
         infoLabel.setWordWrap(True)
-        ###
         topHorizontalLayout.addWidget(infoLabel)
+        ####
+        # aboutPushButton
+        aboutPushButton = QPushButton()
+        aboutPushButton.setIcon(QIcon(f'{FileUtil.getResourcePath()}/images/about.png'))
+        aboutPushButton.setIconSize(QSize(32, 32))
+        aboutPushButton.setFixedSize(QSize(32, 32))
+        aboutPushButton.setStyleSheet("background-color: rgba(255, 255, 255, 0);")
+        aboutPushButton.setCursor(QCursor(Qt.WhatsThisCursor))
+        topHorizontalLayout.addWidget(aboutPushButton)
+        ###
         verticalLayout.addLayout(topHorizontalLayout)
         ############
         # Snapshots List QTableWidget
@@ -56,7 +64,25 @@ class mainWindow(QMainWindow):
         verticalLayout.addWidget(self.snapshotsTableWidget)
         self.snapshotsTableWidget.setColumnCount(6)
         self.snapshotsTableWidget.setHorizontalHeaderLabels(self.horHeaders)
+        self.snapshotsTableWidget.setEditTriggers(QTableWidget.NoEditTriggers)
+        self.snapshotsTableWidget.setSelectionMode(QAbstractItemView.SingleSelection)
         ############
+        # Two PushButtons (Rollback and Exit)
+        rollbackPushButton = QPushButton("&Rollback")
+        rollbackPushButton.setFixedHeight(32)
+        rollbackPushButton.setIcon(QIcon(f'{FileUtil.getResourcePath()}/images/rollback.png'))
+        rollbackPushButton.setIconSize(QSize(24, 24))
+        rollbackPushButton.setFont(QFont('Fira Code', 12))
+        exitPushButton = QPushButton("&Exit")
+        exitPushButton.setFixedHeight(32)
+        exitPushButton.setIcon(QIcon(f'{FileUtil.getResourcePath()}/images/exit.png'))
+        exitPushButton.setFont(QFont('Fira Code', 12))
+        exitPushButton.clicked.connect(self.exitApp)
+        bottonHorizontalLayout = QHBoxLayout()
+        bottonHorizontalLayout.addWidget(rollbackPushButton)
+        bottonHorizontalLayout.addWidget(exitPushButton)
+        verticalLayout.addLayout(bottonHorizontalLayout)
+        #######
         # Set the central widget of the Window.
         centralWidget = QWidget()
         centralWidget.setLayout(verticalLayout)
