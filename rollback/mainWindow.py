@@ -74,18 +74,29 @@ class mainWindow(QMainWindow):
         self.snapshotsTableWidget.setRowCount(len(lines))
         for idx, line in enumerate(lines):
             col = line.split('|')
-            print(f'Index[{idx}] COL ===>  {col[0]}')
             # ID
-            idItem = QTableWidgetItem(col[0])
+            idItem = QTableWidgetItem(col[0].rstrip())
             self.snapshotsTableWidget.setItem(idx, 0, idItem)
             # Type
-            typeItem = QTableWidgetItem(col[1])
+            typeItem = QTableWidgetItem(col[1].rstrip())
             self.snapshotsTableWidget.setItem(idx, 1, typeItem)
             # Date
-            dateItem = QTableWidgetItem(col[3])
+            dateItem = QTableWidgetItem(col[3].rstrip())
             self.snapshotsTableWidget.setItem(idx, 2, dateItem)
+            # User
+            userItem = QTableWidgetItem(col[4].rstrip())
+            self.snapshotsTableWidget.setItem(idx, 3, userItem)
+            # Cleanup
+            cleanupItem = QTableWidgetItem(col[5].rstrip())
+            self.snapshotsTableWidget.setItem(idx, 4, cleanupItem)
+            # Description
+            descriptionItem = QTableWidgetItem(col[6].rstrip())
+            self.snapshotsTableWidget.setItem(idx, 5, descriptionItem)
 
         self.snapshotsTableWidget.setHorizontalHeaderLabels(horHeaders)
+        header = self.snapshotsTableWidget.horizontalHeader()
+        header.setSectionResizeMode(QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(5, QHeaderView.Stretch)
 
     def getSnapshotLines(self):
         output = sp.getoutput(self.commands['snapper-list'])
