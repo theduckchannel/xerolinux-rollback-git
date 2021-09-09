@@ -97,6 +97,9 @@ class mainWindow(QMainWindow):
         header = self.snapshotsTableWidget.horizontalHeader()
         header.setSectionResizeMode(QHeaderView.ResizeToContents)
         header.setSectionResizeMode(5, QHeaderView.Stretch)
+        self.snapshotsTableWidget.setSelectionBehavior(QAbstractItemView.SelectRows)
+        if len(lines)>0:
+            self.snapshotsTableWidget.selectRow(0)
 
     def getSnapshotLines(self):
         output = sp.getoutput(self.commands['snapper-list'])
