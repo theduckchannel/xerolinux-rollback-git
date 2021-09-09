@@ -5,8 +5,8 @@ import qdarkstyle
 from qtpy.QtWidgets import *
 from qtpy.QtGui import *
 from qtpy.QtCore import *
-from rollback.api import FileUtil
-from rollback.version import Version
+from xerolinux_rollback.api import FileUtil
+from xerolinux_rollback.version import Version
 
 
 # Only for debug .setStyleSheet("background-color: red")
@@ -43,7 +43,7 @@ class mainWindow(QMainWindow):
         topHorizontalLayout.addWidget(xerolinuxLabel)
         ####
         # Info Label
-        infoLabel = QLabel("Select the snapshot from the list below and click the rollback button.")
+        infoLabel = QLabel("Select the snapshot from the list below and click the xerolinux_rollback button.")
         # infoLabel.setStyleSheet("background-color: red")
         infoLabel.setFont(QFont('Fira Code', 14))
         infoLabel.setWordWrap(True)

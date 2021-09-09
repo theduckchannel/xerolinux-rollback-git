@@ -8,11 +8,11 @@ with open("README.md", "r") as fh:
 
 
 setuptools.setup(
-    name='xerolinux-rollback',
+    name='xerolinux-xerolinux_rollback',
     version='0.3.6',
     author="The Duck Channel",
     author_email="fredcox@gmail.com",
-    description='BTRFS rollback utility fom Xerolinux Distro',
+    description='BTRFS xerolinux_rollback utility fom Xerolinux Distro',
     long_description=long_description,
     long_description_content_type='text/markdown',
     url="https://github.com/theduckchannel/xerolinux-rollback",
@@ -23,7 +23,7 @@ setuptools.setup(
         "Operating System :: POSIX :: Linux",
     ],
     python_requires='>=3.8',
-    scripts=['bin/rollback'],
+    scripts=['bin/xerolinux_rollback'],
 
     install_requires=[
         'PyQt6'
