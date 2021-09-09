@@ -3,8 +3,8 @@ import os
 from rollback.mainWindow import mainWindow
 
 if __name__ == '__main__':
-    os.environ['QT_LOGGING_RULES'] = "qt6ct.debug=false"
-    os.environ['QT_API'] = 'pyqt6'
+    os.environ['QT_LOGGING_RULES'] = "qt5ct.debug=false"
+    os.environ['QT_API'] = 'pyqt5'
     window = mainWindow()
 
 

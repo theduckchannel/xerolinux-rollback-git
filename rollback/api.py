@@ -1,4 +1,4 @@
-from PyQt6 import QtWidgets
+from qtpy import QtWidgets
 import string
 import random
 import os

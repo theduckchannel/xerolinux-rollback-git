@@ -1,8 +1,7 @@
 import setuptools
 # ---------------------------------------------------
 # Requirements
-# python-pyqt6
-# ttf-fira-code
+# python-pyqt5
 # python-qdarkstyle
 with open("README.md", "r") as fh:
     long_description = fh.read()

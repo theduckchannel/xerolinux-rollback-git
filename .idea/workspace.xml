@@ -4,10 +4,8 @@
     <list default="true" id="ab7be170-e96e-4532-850b-afa4f0faff2a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/xerolinux-rollback" beforeDir="false" afterPath="$PROJECT_DIR$/bin/xerolinux-rollback" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/MainWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/rollback/mainWindow.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rollback/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/rollback/api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/main_window.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollback/main_window.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rollback/mainWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/rollback/mainWindow.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,6 +31,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Templates/xerolinux-rollback" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager">

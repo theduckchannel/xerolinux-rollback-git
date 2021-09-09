@@ -1,8 +1,9 @@
+import os
 import sys
 import subprocess as sp
 import qdarkstyle
-from PyQt6.QtCore import QSize
-from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton
+from qtpy.QtCore import QSize
+from qtpy.QtWidgets import QMainWindow, QApplication, QPushButton
 from rollback.api import FileUtil
 from rollback.version import Version
 
@@ -26,6 +27,9 @@ class mainWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle(f'Xerolinux Rollback Utility version {Version.getVersion()}')
         self.setFixedSize(QSize(800, 600))
+        # setup stylesheet
+        # the default system in qdarkstyle uses qtpy environment variable
+        self.app.setStyleSheet(qdarkstyle.load_stylesheet())
         button = QPushButton("Press Me!")
 
         # Set the central widget of the Window.
@@ -69,4 +73,3 @@ class mainWindow(QMainWindow):
     def clearData(self):
         for header in self.data:
             self.data[header].clear()
-
