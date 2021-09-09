@@ -1,7 +1,6 @@
 import sys
-from PyQt5 import QtWidgets
+from qtpy import QtWidgets
 from rollback.api import FileUtil
-
 from rollback.main_window import Ui_MainWindow
 
 

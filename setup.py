@@ -5,6 +5,7 @@ import setuptools
 # python-pyqt5-stubs
 # python-pyqt5-sip
 # ttf-fira-code
+# python-qdarkstyle
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
