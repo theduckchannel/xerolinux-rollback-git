@@ -1,9 +1,7 @@
 import setuptools
 # ---------------------------------------------------
 # Requirements
-# python-pyqt5
-# python-pyqt5-stubs
-# python-pyqt5-sip
+# python-pyqt6
 # ttf-fira-code
 # python-qdarkstyle
 with open("README.md", "r") as fh:
@@ -29,7 +27,7 @@ setuptools.setup(
     scripts=['bin/rollback'],
 
     install_requires=[
-        'PyQt5'
+        'PyQt6'
     ],
     include_package_data=True,
     zip_safe=False,

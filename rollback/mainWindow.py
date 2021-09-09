@@ -1,11 +1,13 @@
 import sys
 import subprocess as sp
-from qtpy import QtWidgets
+import qdarkstyle
+from PyQt6.QtCore import QSize
+from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton
 from rollback.api import FileUtil
-from rollback.main_window import Ui_MainWindow
+from rollback.version import Version
 
 
-class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
+class mainWindow(QMainWindow):
     data = {
         'ID': [],
         'Date': [],
@@ -18,29 +20,36 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         'snapper-list': "snapper list | sed '1,3d'",
     }
 
-    app = QtWidgets.QApplication(sys.argv)
+    app = QApplication(sys.argv)
 
-    def __init__(self, *args, obj=None, **kwargs):
-        super(MainWindow, self).__init__(*args, **kwargs)
-        self.setupUi(self)
-        self.exitPushButton.clicked.connect(self.exitApp)
-        self.refreshSnapshotsList()
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle(f'Xerolinux Rollback Utility version {Version.getVersion()}')
+        self.setFixedSize(QSize(800, 600))
+        button = QPushButton("Press Me!")
+
+        # Set the central widget of the Window.
+        # self.setCentralWidget(button)
+        self.show()
+        sys.exit(self.app.exec())
 
     def exitApp(self):
         print(f'Locale dir ====> {FileUtil.getResourcePath()}')
         self.getSnapshotList()
         self.app.quit()
 
-    def refreshSnapshotsList(self):
-        self.getSnapshotList()
-        self.tableWidget.setColumnCount(4)
-        horHeaders = []
-        for n, key in enumerate(self.data.keys()):
-            horHeaders.append(key)
-            for idx, col in enumerate(self.data[key]):
-                print(f'index ===> {idx} data ===> {col}')
-
-        self.tableWidget.setHorizontalHeaderLabels(horHeaders)
+    # def refreshSnapshotsList(self):
+    #     self.getSnapshotList()
+    #     self.tableWidget.setColumnCount(4)
+    #     horHeaders = []
+    #     self.tableWidget.setRowCount(len(self.data['ID']))
+    #     for n, key in enumerate(self.data):
+    #         horHeaders.append(key)
+    #         for m, item in enumerate(self.data[key]):
+    #             newitem = QtWidgets.QTableWidgetItem(item)
+    #             self.tableWidget.setItem(m, n, newitem)
+    #
+    #     self.tableWidget.setHorizontalHeaderLabels(horHeaders)
 
     def getSnapshotList(self):
         output = sp.getoutput(self.commands['snapper-list'])
@@ -60,3 +69,4 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def clearData(self):
         for header in self.data:
             self.data[header].clear()
+
