@@ -13,6 +13,7 @@ from rollback.version import Version
 
 
 class mainWindow(QMainWindow):
+    horHeaders = ['ID', 'Type', 'Date', 'User', 'Cleanup', 'Description']
     commands = {
         'snapper-list': "snapper list | sed '1,3d'",
     }
@@ -53,6 +54,8 @@ class mainWindow(QMainWindow):
         # Snapshots List QTableWidget
         self.snapshotsTableWidget.verticalHeader().hide()
         verticalLayout.addWidget(self.snapshotsTableWidget)
+        self.snapshotsTableWidget.setColumnCount(6)
+        self.snapshotsTableWidget.setHorizontalHeaderLabels(self.horHeaders)
         ############
         # Set the central widget of the Window.
         centralWidget = QWidget()
@@ -68,9 +71,7 @@ class mainWindow(QMainWindow):
 
     def refreshSnapshotsList(self):
         lines = self.getSnapshotLines()
-        self.snapshotsTableWidget.setColumnCount(6)
         # print(lines)
-        horHeaders = ['ID', 'Type', 'Date', 'User', 'Cleanup', 'Description']
         self.snapshotsTableWidget.setRowCount(len(lines))
         for idx, line in enumerate(lines):
             col = line.split('|')
@@ -93,12 +94,11 @@ class mainWindow(QMainWindow):
             descriptionItem = QTableWidgetItem(col[6].rstrip())
             self.snapshotsTableWidget.setItem(idx, 5, descriptionItem)
 
-        self.snapshotsTableWidget.setHorizontalHeaderLabels(horHeaders)
         header = self.snapshotsTableWidget.horizontalHeader()
         header.setSectionResizeMode(QHeaderView.ResizeToContents)
         header.setSectionResizeMode(5, QHeaderView.Stretch)
         self.snapshotsTableWidget.setSelectionBehavior(QAbstractItemView.SelectRows)
-        if len(lines)>0:
+        if len(lines) > 0:
             self.snapshotsTableWidget.selectRow(0)
 
     def getSnapshotLines(self):
