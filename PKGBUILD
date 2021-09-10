@@ -5,7 +5,7 @@ pkgdesc='Xerolinux Rollback Utility to snapshot using the layout proposed in the
 arch=('any')
 license=('GPL3')
 url='https://github.com/theduckchannel/xerolinux-rollback'
-depends=('coreutils' 'python' 'btrfs-progs', 'snapper', 'python-pyqt5', 'python-qdarkstyle', 'konsole')
+depends=('coreutils' 'python' 'btrfs-progs', 'snapper', 'python-pyqt5', 'python-qdarkstyle', 'konsole', 'rollback-git')
 optdepends=('doas: Automatic priv escalation'
             'sudo: Automatic priv escalation')
 makedepends=('git')

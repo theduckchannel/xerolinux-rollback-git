@@ -104,7 +104,8 @@ class mainWindow(QMainWindow):
         text, ok = QInputDialog.getText(None, "Attention", "Sudo Password:", QLineEdit.Password)
         if ok and text:
             self.sudoPassword = str(text)
-            statusOuput = sp.getstatusoutput(f'echo \'{self.sudoPassword}\' | sudo -S whoami')
+            statusOuput = sp.getstatusoutput(f'echo \'{self.sudoPassword}\' | sudo -p \'\' -S whoami')
+            print(statusOuput)
             if statusOuput[0] == 0:
                 retValue = True
             else:

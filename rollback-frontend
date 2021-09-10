@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# konsole --hide-menubar --hide-tabbar -e
+
+echo "Snapshot ID: $1"
+
+NEWDIR="/btrfsroot$1"
+sudo mkdir $NEWDIR
+
+
+
+pauseforkey() {
+    echo -n "Press any key to continue"
+    read -n 1 -s -r -p ""
+    echo ""
+}
+
+pauseforkey
+
