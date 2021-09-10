@@ -1,14 +1,12 @@
 #!/bin/bash
 
-# konsole --hide-menubar --hide-tabbar -e
-
-echo "Snapshot ID: $1"
-
-grep 'subvol=/@\s' /etc/fstab | cut -d' ' -f1
-
-NEWDIR="/btrfsroot$1"
-sudo mkdir $NEWDIR
-
+ID="$1"
+ROOTPART="$2"
+NEWDIR="/btrfsroot$ID"
+echo -e "Snapshot ID\t\t\t ===> $1"
+echo -e "Root Partition\t\t\t ===> $2" 
+echo -e "Temporary directory\t\t ===> $NEWDIR"
+#sudo mkdir $NEWDIR
 
 
 pauseforkey() {
@@ -16,6 +14,13 @@ pauseforkey() {
     read -n 1 -s -r -p ""
     echo ""
 }
+
+
+#sudo sed -i "s/subvolid5 =.*/subvolid = \/btrfs$1/" /etc/rollback.conf
+
+# konsole --hide-menubar --hide-tabbar -e 
+
+sudo rm -rf $NEWDIR
 
 pauseforkey
 

@@ -56,7 +56,10 @@ class Partition:
     def getRootPartition():
         partitions = psutil.disk_partitions()
         print('Querying root partition...')
+        retValue = None
         for partition in partitions:
             if partition.mountpoint == '/':
                 print('Found!')
-                print(partition.device)
+                retValue = partition.device
+
+        return retValue
