@@ -3,6 +3,7 @@ import string
 import random
 import os
 import re
+import psutil
 
 
 class FileUtil:
@@ -48,3 +49,14 @@ class StringUtil:
         result_str = ''.join(random.choice(letters) for i in range(stringLenght))
         return result_str
 
+
+class Partition:
+
+    @staticmethod
+    def getRootPartition():
+        partitions = psutil.disk_partitions()
+        print('Querying root partition...')
+        for partition in partitions:
+            if partition.mountpoint == '/':
+                print('Found!')
+                print(partition.device)

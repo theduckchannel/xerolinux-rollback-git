@@ -4,6 +4,8 @@
 
 echo "Snapshot ID: $1"
 
+grep 'subvol=/@\s' /etc/fstab | cut -d' ' -f1
+
 NEWDIR="/btrfsroot$1"
 sudo mkdir $NEWDIR
 

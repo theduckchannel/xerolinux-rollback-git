@@ -105,15 +105,15 @@ class mainWindow(QMainWindow):
         if ok and text:
             self.sudoPassword = str(text)
             statusOuput = sp.getstatusoutput(f'echo \'{self.sudoPassword}\' | sudo -p \'\' -S whoami')
-            print(statusOuput)
-            if statusOuput[0] == 0:
+            if statusOuput[0] == 0 and statusOuput[1] == 'root':
                 retValue = True
             else:
-                Alert('Error', 'Wrong password!').exec()
+                Alert('Error', 'Wrong password or you not root!').exec()
 
         return retValue
 
     def exitApp(self):
+        Partition.getRootPartition()
         self.app.quit()
         sys.exit(0)
 
