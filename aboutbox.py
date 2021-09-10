@@ -45,6 +45,7 @@ class AboutBox(QDialog):
 
         # warrantyText
         textAboutLabel = QLabel('This program comes with absolutely no warranty')
+        textAboutLabel.setWordWrap(True)
         textAboutLabel.setTextFormat(Qt.RichText)
         textAboutLabel.setAlignment(alignCenter)
         self.layout.addWidget(textAboutLabel)
@@ -52,6 +53,7 @@ class AboutBox(QDialog):
         urlLabel = QLabel(urlLink)
         urlLabel.setAlignment(alignCenter)
         urlLabel.setOpenExternalLinks(True)
+        urlLabel.setWordWrap(True)
         self.layout.addWidget(urlLabel)
         self.layout.addSpacing(30)
 

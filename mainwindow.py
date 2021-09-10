@@ -24,7 +24,7 @@ class mainWindow(QMainWindow):
     def __init__(self):
         super().__init__(parent=None)
         self.setWindowTitle(f'Xerolinux Rollback Utility version {Version.getVersion()}')
-        self.setFixedSize(QSize(800, 600))
+        self.setFixedSize(QSize(1024, 768))
         ###################################################
         # Vertical Layout ###
         verticalLayout = QVBoxLayout()
@@ -83,6 +83,9 @@ class mainWindow(QMainWindow):
         bottonHorizontalLayout.addWidget(rollbackPushButton)
         bottonHorizontalLayout.addWidget(exitPushButton)
         verticalLayout.addLayout(bottonHorizontalLayout)
+        # Window Icon
+        self.setWindowIcon(QIcon(f'{FileUtil.getResourcePath()}/images/xerolinux-logo128x128.png'))
+
         #######
         # Set the central widget of the Window.
         centralWidget = QWidget()
