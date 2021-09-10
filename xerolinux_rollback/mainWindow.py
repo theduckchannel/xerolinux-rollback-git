@@ -7,6 +7,7 @@ from qtpy.QtGui import *
 from qtpy.QtCore import *
 from xerolinux_rollback.api import FileUtil
 from xerolinux_rollback.version import Version
+from xerolinux_rollback.aboutbox import AboutBox
 
 
 # Only for debug .setStyleSheet("background-color: red")
@@ -18,6 +19,7 @@ class mainWindow(QMainWindow):
     }
     app = QApplication(sys.argv)
     snapshotsTableWidget = QTableWidget()
+    aboutBox = AboutBox()
 
     def __init__(self):
         super().__init__()
@@ -54,7 +56,8 @@ class mainWindow(QMainWindow):
         aboutPushButton.setIconSize(QSize(32, 32))
         aboutPushButton.setFixedSize(QSize(32, 32))
         aboutPushButton.setStyleSheet("background-color: rgba(255, 255, 255, 0);")
-        aboutPushButton.setCursor(QCursor(Qt.WhatsThisCursor))
+        aboutPushButton.setCursor(QCursor(Qt.PointingHandCursor))
+        aboutPushButton.clicked.connect(self.showAboutBox)
         topHorizontalLayout.addWidget(aboutPushButton)
         ###
         verticalLayout.addLayout(topHorizontalLayout)
@@ -135,3 +138,6 @@ class mainWindow(QMainWindow):
     def clearData(self):
         for header in self.data:
             self.data[header].clear()
+
+    def showAboutBox(self):
+        self.aboutBox.show()
