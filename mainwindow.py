@@ -110,7 +110,6 @@ class mainWindow(QMainWindow):
         return retValue
 
     def exitApp(self):
-        Partition.getRootPartition()
         self.app.quit()
         sys.exit(0)
 
