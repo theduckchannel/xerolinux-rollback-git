@@ -28,7 +28,7 @@ class mainWindow(QMainWindow):
         self.setFixedSize(QSize(800, 600))
         # setup stylesheet
         # the default system in qdarkstyle uses qtpy environment variable
-        self.app.setStyleSheet(qdarkstyle.load_stylesheet())
+        # self.app.setStyleSheet(qdarkstyle.load_stylesheet())
         ###################################################
         # Vertical Layout ###
         verticalLayout = QVBoxLayout()

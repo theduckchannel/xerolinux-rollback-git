@@ -16,7 +16,7 @@ echo -e "Root Partition\t\t\t ===> $2"
 echo -e "Temporary directory\t\t ===> /$TEMPDIR"
 # Create temporary directory
 sudo mkdir /$TEMPDIR
-sudo mount -t btrfs -o subvolid=5 $ROOTPART /$TEMPTEMPDIR
+sudo mount -t btrfs -o subvolid=5 $ROOTPART /$TEMPDIR
 
 # Change rollback-git config file
 sudo sed -i "s/subvolid5 =.*/subvolid5 = \/$TEMPDIR/" /etc/rollback.conf
