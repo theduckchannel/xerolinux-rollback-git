@@ -164,3 +164,4 @@ class mainWindow(QMainWindow):
 
     def showAboutBox(self):
         self.aboutBox.show()
+
