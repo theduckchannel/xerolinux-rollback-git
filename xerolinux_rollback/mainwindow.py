@@ -95,15 +95,14 @@ class mainWindow(QMainWindow):
         ############
         if self.checkSudoPassword():
             self.show()
+            self.refreshSnapshotsList()
+            sys.exit(self.app.exec())
         else:
-            self.app.quit()
-
-        self.refreshSnapshotsList()
-        sys.exit(self.app.exec())
+            sys.exit(1)
 
     def checkSudoPassword(self):
-        text, ok = QInputDialog.getText(None, "Attention", "Sudo Password:", QLineEdit.Password)
         retValue = False
+        text, ok = QInputDialog.getText(None, "Attention", "Sudo Password:", QLineEdit.Password)
         if ok and text:
             self.sudoPassword = str(text)
             statusOuput = sp.getstatusoutput(f'echo \'{self.sudoPassword}\' | sudo -S whoami')
@@ -116,6 +115,7 @@ class mainWindow(QMainWindow):
 
     def exitApp(self):
         self.app.quit()
+        sys.exit(0)
 
     def rollback(self):
         index = self.snapshotsTableWidget.selectionModel().currentIndex()
