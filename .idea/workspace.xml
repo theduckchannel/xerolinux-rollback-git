@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab7be170-e96e-4532-850b-afa4f0faff2a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/xerolinux_rollback/aboutbox.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xerolinux_rollback/mainWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/xerolinux_rollback/mainWindow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xerolinux_rollback/version.py" beforeDir="false" afterPath="$PROJECT_DIR$/xerolinux_rollback/version.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PKG-INFO" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/xerolinux-rollback" beforeDir="false" afterPath="$PROJECT_DIR$/bin/xerolinux-rollback" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xerolinux_rollback/mainWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/xerolinux_rollback/mainwindow.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

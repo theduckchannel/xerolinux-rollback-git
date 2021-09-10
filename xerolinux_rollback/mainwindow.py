@@ -5,7 +5,7 @@ import qdarkstyle
 from qtpy.QtWidgets import *
 from qtpy.QtGui import *
 from qtpy.QtCore import *
-from xerolinux_rollback.api import FileUtil
+from xerolinux_rollback.api import *
 from xerolinux_rollback.version import Version
 from xerolinux_rollback.aboutbox import AboutBox
 
@@ -14,15 +14,16 @@ from xerolinux_rollback.aboutbox import AboutBox
 
 class mainWindow(QMainWindow):
     horHeaders = ['ID', 'Type', 'Date', 'User', 'Cleanup', 'Description']
+    sudoPassword = ''
     commands = {
-        'snapper-list': "snapper list | sed '1,3d'",
+        'snapper-list': "snapper list | sed '1,3d'"
     }
     app = QApplication(sys.argv)
     snapshotsTableWidget = QTableWidget()
     aboutBox = AboutBox()
 
     def __init__(self):
-        super().__init__()
+        super().__init__(parent=None)
         self.setWindowTitle(f'Xerolinux Rollback Utility version {Version.getVersion()}')
         self.setFixedSize(QSize(800, 600))
         # setup stylesheet
@@ -75,6 +76,7 @@ class mainWindow(QMainWindow):
         rollbackPushButton.setFixedHeight(32)
         rollbackPushButton.setIcon(QIcon(f'{FileUtil.getResourcePath()}/images/rollback.png'))
         rollbackPushButton.setIconSize(QSize(24, 24))
+        rollbackPushButton.clicked.connect(self.rollback)
         rollbackPushButton.setFont(QFont('Fira Code', 12))
         exitPushButton = QPushButton("&Exit")
         exitPushButton.setFixedHeight(32)
@@ -91,12 +93,34 @@ class mainWindow(QMainWindow):
         centralWidget.setLayout(verticalLayout)
         self.setCentralWidget(centralWidget)
         ############
-        self.show()
+        if self.checkSudoPassword():
+            self.show()
+        else:
+            self.app.quit()
+
         self.refreshSnapshotsList()
         sys.exit(self.app.exec())
 
+    def checkSudoPassword(self):
+        text, ok = QInputDialog.getText(None, "Attention", "Sudo Password:", QLineEdit.Password)
+        retValue = False
+        if ok and text:
+            self.sudoPassword = str(text)
+            statusOuput = sp.getstatusoutput(f'echo \'{self.sudoPassword}\' | sudo -S whoami')
+            if statusOuput[0] == 0:
+                retValue = True
+            else:
+                Alert('Error', 'Wrong password!').exec()
+
+        return retValue
+
     def exitApp(self):
         self.app.quit()
+
+    def rollback(self):
+        index = self.snapshotsTableWidget.selectionModel().currentIndex()
+        snapshotID = index.sibling(index.row(), 0).data()
+        print(f'Snapshot ID: {snapshotID}')
 
     def refreshSnapshotsList(self):
         lines = self.getSnapshotLines()
