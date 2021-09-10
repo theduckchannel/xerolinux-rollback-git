@@ -1,26 +1,33 @@
 #!/bin/bash
 
-ID="$1"
-ROOTPART="$2"
-NEWDIR="/btrfsroot$ID"
-echo -e "Snapshot ID\t\t\t ===> $1"
-echo -e "Root Partition\t\t\t ===> $2" 
-echo -e "Temporary directory\t\t ===> $NEWDIR"
-#sudo mkdir $NEWDIR
-
-
 pauseforkey() {
     echo -n "Press any key to continue"
     read -n 1 -s -r -p ""
     echo ""
 }
 
+# Variables
+ID="$1"
+ROOTPART="$2"
+TEMPDIR="btrfsroot$ID"
+# Display information
+echo -e "Snapshot ID\t\t\t ===> $1"
+echo -e "Root Partition\t\t\t ===> $2" 
+echo -e "Temporary directory\t\t ===> /$TEMPDIR"
+# Create temporary directory
+sudo mkdir /$TEMPDIR
+sudo mount -t btrfs -o subvolid=5 $ROOTPART /$TEMPTEMPDIR
 
-#sudo sed -i "s/subvolid5 =.*/subvolid = \/btrfs$1/" /etc/rollback.conf
+# Change rollback-git config file
+sudo sed -i "s/subvolid5 =.*/subvolid5 = \/$TEMPDIR/" /etc/rollback.conf
+
+# Fire Rollback
+sudo rollback $ID
 
 # konsole --hide-menubar --hide-tabbar -e 
-
-sudo rm -rf $NEWDIR
-
+# Umount and delete temporary directory
+sudo umount /$TEMPDIR
+sudo rm -rf /$TEMPDIR
+# Wait for user input
 pauseforkey
 
