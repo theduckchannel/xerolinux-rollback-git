@@ -1,13 +1,12 @@
-import os
 import sys
 import subprocess as sp
 import qdarkstyle
 from qtpy.QtWidgets import *
 from qtpy.QtGui import *
 from qtpy.QtCore import *
-from xerolinux_rollback.api import *
-from xerolinux_rollback.version import Version
-from xerolinux_rollback.aboutbox import AboutBox
+from api import *
+from version import Version
+from aboutbox import AboutBox
 
 
 # Only for debug .setStyleSheet("background-color: red")

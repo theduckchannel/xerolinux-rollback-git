@@ -1,9 +1,8 @@
-import qdarkstyle
 from qtpy.QtWidgets import *
 from qtpy.QtGui import *
 from qtpy.QtCore import *
-from xerolinux_rollback.version import Version
-from xerolinux_rollback.api import FileUtil
+from version import Version
+from api import FileUtil
 
 
 class AboutBox(QDialog):
