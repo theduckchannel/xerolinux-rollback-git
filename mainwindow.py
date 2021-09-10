@@ -1,6 +1,5 @@
 import sys
 import subprocess as sp
-import qdarkstyle
 from qtpy.QtWidgets import *
 from qtpy.QtGui import *
 from qtpy.QtCore import *
@@ -26,9 +25,6 @@ class mainWindow(QMainWindow):
         super().__init__(parent=None)
         self.setWindowTitle(f'Xerolinux Rollback Utility version {Version.getVersion()}')
         self.setFixedSize(QSize(800, 600))
-        # setup stylesheet
-        # the default system in qdarkstyle uses qtpy environment variable
-        # self.app.setStyleSheet(qdarkstyle.load_stylesheet())
         ###################################################
         # Vertical Layout ###
         verticalLayout = QVBoxLayout()
