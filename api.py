@@ -47,3 +47,4 @@ class StringUtil:
         letters = string.ascii_lowercase
         result_str = ''.join(random.choice(letters) for i in range(stringLenght))
         return result_str
+
