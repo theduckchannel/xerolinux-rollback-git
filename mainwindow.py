@@ -15,7 +15,8 @@ class mainWindow(QMainWindow):
     horHeaders = ['ID', 'Type', 'Date', 'User', 'Cleanup', 'Description']
     sudoPassword = ''
     commands = {
-        'snapper-list': "snapper list | sed '1,3d'"
+        'snapper-list': "snapper list | sed '1,3d'",
+        'konsole-rollback': f"konsole --hide-menubar --hide-tabbar -e {FileUtil.getResourcePath()}/rollback-frontend"
     }
     app = QApplication(sys.argv)
     snapshotsTableWidget = QTableWidget()
@@ -120,7 +121,10 @@ class mainWindow(QMainWindow):
     def rollback(self):
         index = self.snapshotsTableWidget.selectionModel().currentIndex()
         snapshotID = index.sibling(index.row(), 0).data()
+        rootPartition = Partition.getRootPartition()
         print(f'Snapshot ID: {snapshotID}')
+        print(f'Root Partition: {rootPartition}')
+        sp.getoutput(f'{self.commands["konsole-rollback"]} {snapshotID} {rootPartition}')
 
     def refreshSnapshotsList(self):
         lines = self.getSnapshotLines()
@@ -165,9 +169,3 @@ class mainWindow(QMainWindow):
 
     def showAboutBox(self):
         self.aboutBox.show()
-
-
-    def rollback(self):
-        sp.getoutput('')
-
-
