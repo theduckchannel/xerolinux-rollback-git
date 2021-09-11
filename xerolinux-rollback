@@ -6,7 +6,7 @@ from qtpy.QtWidgets import *
 from qtpy.QtGui import *
 from qtpy.QtCore import *
 import psutil
-
+from command_runner.elevate import elevate
 
 # Current version
 current_version = '0.1.5'
