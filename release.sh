@@ -12,7 +12,7 @@ sed -i "s/^pkgver=.*/pkgver=$NEWVERSION/" ../"$PKGNAME"-AUR/PKGBUILD
 sed -i "s/^current_version.*/current_version='$NEWVERSION'/" xerolinux-rollback
 #####
 echo "Preparing to release $NEWVERSION on AUR...."
-cd "../$PGKNAME-AUR"
+cd ../"$PKGNAME"-AUR
 makepkg --printsrcinfo > .SRCINFO
 git add -A
 git commit -m "release $NEWVERSION"
