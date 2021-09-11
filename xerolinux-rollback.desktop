@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
-Exec=/usr/bin/xerolinux_rollback
+Exec=/usr/bin/xerolinux-rollback
 Path=/usr/bin
 Comment=Xerolinux Rollback Utility
-Icon=/usr/share/xerolinux-rollback/images/xerolinux-logo.png
+Icon=/usr/share/xerolinux-rollback/images/xerolinux-icon.png
 Categories=System;
 Name=xerolinux_rollback
