@@ -21,6 +21,6 @@ pkgver() {
 
 package() {
     cd "xerolinux-rollback"
-    install -Dm644  "xerolinux-rollback.conf" -t "$pkgdir/etc/"
     install -Dm755  "xerolinux-rollback" -t "$pkgdir/usr/bin/"
+    install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }

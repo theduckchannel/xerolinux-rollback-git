@@ -35,7 +35,7 @@ class mainWindow(QMainWindow):
         ####
         # Xerolinux Logotype Label
         xerolinuxLabel = QLabel(self)
-        xerolinuxLabel.setPixmap(QPixmap(f'{FileUtil.getResourcePath()}/images/xerolinux-logo96x96.png'))
+        xerolinuxLabel.setPixmap(QPixmap(f'{FileUtil.getResourcePath()}/images/xerolinux-logo.png'))
         # xerolinuxLabel.setStyleSheet("background-color: red")
         xerolinuxLabel.setFixedWidth(96)
         topHorizontalLayout.addWidget(xerolinuxLabel)
@@ -84,7 +84,7 @@ class mainWindow(QMainWindow):
         bottonHorizontalLayout.addWidget(exitPushButton)
         verticalLayout.addLayout(bottonHorizontalLayout)
         # Window Icon
-        self.setWindowIcon(QIcon(f'{FileUtil.getResourcePath()}/images/xerolinux-logo128x128.png'))
+        self.setWindowIcon(QIcon(f'{FileUtil.getResourcePath()}/images/xerolinux-logo.png'))
 
         #######
         # Set the central widget of the Window.
