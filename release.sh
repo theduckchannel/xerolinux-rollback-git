@@ -16,7 +16,7 @@ git add -A
 git commit -m "release $NEWVERSION"
 git push
 echo "Everything ok $NEWVERSION released!"
-cd ~/xerolinux-rollback-git
+cd xerolinux-rollback-git
 
 echo "Updating github repo..."
 update.sh
