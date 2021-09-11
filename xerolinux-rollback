@@ -119,7 +119,6 @@ class Alert(QDialog):
 
 class mainWindow(QMainWindow):
     horHeaders = ['ID', 'Type', 'Date', 'User', 'Cleanup', 'Description']
-    sudoPassword = ''
     commands = {
         'snapper-list': f"snapper list | sed '1,3d'",
         'konsole-rollback': f"konsole --hide-menubar --hide-tabbar -e rollback-frontend"
@@ -203,19 +202,6 @@ class mainWindow(QMainWindow):
         self.show()
         self.refreshSnapshotsList()
         sys.exit(self.app.exec())
-
-    def checkSudoPassword(self):
-        retValue = False
-        text, ok = QInputDialog.getText(None, "Attention", "Sudo Password:", QLineEdit.Password)
-        if ok and text:
-            self.sudoPassword = str(text)
-            statusOuput = sp.getstatusoutput(f'echo \'{self.sudoPassword}\' | sudo -p \'\' -S whoami')
-            if statusOuput[0] == 0 and statusOuput[1] == 'root':
-                retValue = True
-            else:
-                Alert('Error', 'Wrong password or you not root!').exec()
-
-        return retValue
 
     def exitApp(self):
         self.app.quit()
