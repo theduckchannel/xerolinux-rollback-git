@@ -1,10 +1,283 @@
-#!/usr/bin/python
+#!/usr/bin/env -S python
 import os
-from mainwindow import mainWindow
+import sys
+import subprocess as sp
+from qtpy.QtWidgets import *
+from qtpy.QtGui import *
+from qtpy.QtCore import *
+import psutil
+
+# Current version
+current_version = '0.1.5'
+
+
+class Version:
+
+    @staticmethod
+    def getAppName():
+        return 'Xerolinux Rollback Utility'
+
+    @staticmethod
+    def getVersion():
+        return current_version
+
+
+class Partition:
+
+    @staticmethod
+    def getRootPartition():
+        partitions = psutil.disk_partitions()
+        print('Querying root partition...')
+        retValue = None
+        for partition in partitions:
+            if partition.mountpoint == '/':
+                print('Found!')
+                retValue = partition.device
+
+        return retValue
+
+
+class AboutBox(QDialog):
+
+    def __init__(self, parent=None):
+        super(AboutBox, self).__init__(parent)
+        self.setFixedWidth(480)
+        self.centerMe()
+        self.setWindowTitle(f'{Version.getAppName()} v. {Version.getVersion()}')
+        alignCenter = Qt.AlignHCenter
+        self.okButton = QDialogButtonBox(QDialogButtonBox.Ok)
+        self.okButton.accepted.connect(self.hideMe)
+        self.layout = QVBoxLayout()
+        # ------------------------------------------------------------------------------------------
+        # Logo
+        self.logoLabel = QLabel()
+        self.logoLabel.setPixmap(QPixmap('./images/xerolinux-logo.png'))
+        self.layout.addWidget(self.logoLabel)
+        self.logoLabel.setAlignment(alignCenter)
+        # ------------------------------------------------------------------------------------------
+        # text about box
+        xerolinux_rollbackLabel = QLabel(f'<strong>{Version.getAppName()}</strong>')
+        xerolinux_rollbackLabel.setTextFormat(Qt.RichText)
+        xerolinux_rollbackLabel.setAlignment(alignCenter)
+        self.layout.addWidget(xerolinux_rollbackLabel)
+        versionLabel = QLabel(f'Version <strong>{Version.getVersion()}</strong>')
+        versionLabel.setTextFormat(Qt.RichText)
+        versionLabel.setAlignment(alignCenter)
+        self.layout.addWidget(versionLabel)
+        # contributors text
+        contHeader = QLabel('Contributors')
+        contHeader.setAlignment(Qt.AlignHCenter)
+        cont1 = QLabel('<a href="https://www.youtube.com/c/TheDuckChannel">The Duck Channel</a>')
+        cont1.setAlignment(Qt.AlignHCenter)
+        cont2 = QLabel('<a href="https://github.com/theduckchannel">Fred Junior</a>')
+        cont2.setAlignment(Qt.AlignHCenter)
+        self.layout.addWidget(contHeader)
+        self.layout.addWidget(cont1)
+        self.layout.addWidget(cont2)
+
+        # warrantyText
+        textAboutLabel = QLabel('This program comes with absolutely no warranty')
+        textAboutLabel.setWordWrap(True)
+        textAboutLabel.setTextFormat(Qt.RichText)
+        textAboutLabel.setAlignment(alignCenter)
+        self.layout.addWidget(textAboutLabel)
+        urlLink = '<a href=\"https://github.com/theduckchannel/xerolinux-rollback/blob/master/LICENSE\">https://github.com/theduckchannel/xerolinux-rollback/blob/master/LICENSE</a>'
+        urlLabel = QLabel(urlLink)
+        urlLabel.setAlignment(alignCenter)
+        urlLabel.setOpenExternalLinks(True)
+        urlLabel.setWordWrap(True)
+        self.layout.addWidget(urlLabel)
+        self.layout.addSpacing(30)
+
+        self.layout.addWidget(self.okButton, alignment=Qt.AlignHCenter)
+        self.setLayout(self.layout)
+
+    def centerMe(self):
+        screenGeo = QApplication.desktop().screenGeometry()
+        x = (screenGeo.width() - self.width()) / 2
+        y = (screenGeo.height() - self.height()) / 2
+        self.move(int(x), int(y))
+
+    def hideMe(self):
+        self.hide()
+
+
+# Display an Alert
+class Alert(QDialog):
+
+    def __init__(self, title, message):
+        super(Alert, self).__init__()
+        self.setWindowTitle(title)
+        self.buttonBox = QDialogButtonBox(QDialogButtonBox.Ok)
+        self.buttonBox.accepted.connect(self.accept)
+        messageLabel = QLabel(message)
+        self.layout = QVBoxLayout()
+        self.layout.addWidget(messageLabel)
+        self.layout.addWidget(self.buttonBox)
+        self.setLayout(self.layout)
+
+
+class mainWindow(QMainWindow):
+    horHeaders = ['ID', 'Type', 'Date', 'User', 'Cleanup', 'Description']
+    sudoPassword = ''
+    commands = {
+        'snapper-list': "snapper list | sed '1,3d'",
+        'konsole-rollback': f"konsole --hide-menubar --hide-tabbar -e rollback-frontend"
+    }
+    app = QApplication(sys.argv)
+    snapshotsTableWidget = QTableWidget()
+    aboutBox = AboutBox()
+
+    def __init__(self):
+        super().__init__(parent=None)
+        self.setWindowTitle(f'Xerolinux Rollback Utility version {Version.getVersion()}')
+        self.setFixedSize(QSize(1024, 768))
+        ###################################################
+        # Vertical Layout ###
+        verticalLayout = QVBoxLayout()
+        verticalLayout.setAlignment(Qt.AlignTop)
+        ####
+        # Horizontal Layout Logo and QLabel for message
+        topHorizontalLayout = QHBoxLayout()
+        ####
+        # Xerolinux Logotype Label
+        xerolinuxLabel = QLabel(self)
+        pixmap = QPixmap('./images/xerolinux-logo.png')
+        xerolinuxLabel.setPixmap(pixmap)
+        # xerolinuxLabel.setStyleSheet("background-color: red")
+        xerolinuxLabel.setFixedWidth(96)
+        topHorizontalLayout.addWidget(xerolinuxLabel)
+        ####
+        # Info Label
+        infoLabel = QLabel("Select the snapshot from the list below and click the rollback button.")
+        # infoLabel.setStyleSheet("background-color: red")
+        infoLabel.setFont(QFont('Fira Code', 14))
+        infoLabel.setWordWrap(True)
+        topHorizontalLayout.addWidget(infoLabel)
+        ####
+        # aboutPushButton
+        aboutPushButton = QPushButton()
+        aboutPushButton.setIcon(QIcon('./images/about.png'))
+        aboutPushButton.setIconSize(QSize(32, 32))
+        aboutPushButton.setFixedSize(QSize(32, 32))
+        aboutPushButton.setStyleSheet("background-color: rgba(255, 255, 255, 0);")
+        aboutPushButton.setCursor(QCursor(Qt.PointingHandCursor))
+        aboutPushButton.clicked.connect(self.showAboutBox)
+        topHorizontalLayout.addWidget(aboutPushButton)
+        ###
+        verticalLayout.addLayout(topHorizontalLayout)
+        ############
+        # Snapshots List QTableWidget
+        self.snapshotsTableWidget.verticalHeader().hide()
+        verticalLayout.addWidget(self.snapshotsTableWidget)
+        self.snapshotsTableWidget.setColumnCount(6)
+        self.snapshotsTableWidget.setHorizontalHeaderLabels(self.horHeaders)
+        self.snapshotsTableWidget.setEditTriggers(QTableWidget.NoEditTriggers)
+        self.snapshotsTableWidget.setSelectionMode(QAbstractItemView.SingleSelection)
+        ############
+        # Two PushButtons (Rollback and Exit)
+        rollbackPushButton = QPushButton("&Rollback")
+        rollbackPushButton.setFixedHeight(32)
+        # rollbackPushButton.setIcon(QIcon(f'{FileUtil.getResourcePath()}/images/rollback.png'))
+        # rollbackPushButton.setIconSize(QSize(24, 24))
+        rollbackPushButton.clicked.connect(self.rollback)
+        rollbackPushButton.setFont(QFont('Fira Code', 12))
+        exitPushButton = QPushButton("&Exit")
+        exitPushButton.setFixedHeight(32)
+        # exitPushButton.setIcon(QIcon(f'{FileUtil.getResourcePath()}/images/exit.png'))
+        exitPushButton.setFont(QFont('Fira Code', 12))
+        exitPushButton.clicked.connect(self.exitApp)
+        bottonHorizontalLayout = QHBoxLayout()
+        bottonHorizontalLayout.addWidget(rollbackPushButton)
+        bottonHorizontalLayout.addWidget(exitPushButton)
+        verticalLayout.addLayout(bottonHorizontalLayout)
+        # Window Icon
+        self.setWindowIcon(QIcon('./images/xerolinux-logo.png'))
+
+        #######
+        # Set the central widget of the Window.
+        centralWidget = QWidget()
+        centralWidget.setLayout(verticalLayout)
+        self.setCentralWidget(centralWidget)
+        ############
+        if self.checkSudoPassword():
+            self.show()
+            self.refreshSnapshotsList()
+            sys.exit(self.app.exec())
+        else:
+            sys.exit(1)
+
+    def checkSudoPassword(self):
+        retValue = False
+        text, ok = QInputDialog.getText(None, "Attention", "Sudo Password:", QLineEdit.Password)
+        if ok and text:
+            self.sudoPassword = str(text)
+            statusOuput = sp.getstatusoutput(f'echo \'{self.sudoPassword}\' | sudo -p \'\' -S whoami')
+            if statusOuput[0] == 0 and statusOuput[1] == 'root':
+                retValue = True
+            else:
+                Alert('Error', 'Wrong password or you not root!').exec()
+
+        return retValue
+
+    def exitApp(self):
+        self.app.quit()
+        sys.exit(0)
+
+    def rollback(self):
+        index = self.snapshotsTableWidget.selectionModel().currentIndex()
+        snapshotID = index.sibling(index.row(), 0).data()
+        rootPartition = Partition.getRootPartition()
+        print(f'Snapshot ID: {snapshotID}')
+        print(f'Root Partition: {rootPartition}')
+        sp.getoutput(f'{self.commands["konsole-rollback"]} {snapshotID} {rootPartition}')
+
+    def refreshSnapshotsList(self):
+        lines = self.getSnapshotLines()
+        # print(lines)
+        self.snapshotsTableWidget.setRowCount(len(lines))
+        for idx, line in enumerate(lines):
+            col = line.split('|')
+            # ID
+            idItem = QTableWidgetItem(col[0].rstrip())
+            self.snapshotsTableWidget.setItem(idx, 0, idItem)
+            # Type
+            typeItem = QTableWidgetItem(col[1].rstrip())
+            self.snapshotsTableWidget.setItem(idx, 1, typeItem)
+            # Date
+            dateItem = QTableWidgetItem(col[3].rstrip())
+            self.snapshotsTableWidget.setItem(idx, 2, dateItem)
+            # User
+            userItem = QTableWidgetItem(col[4].rstrip())
+            self.snapshotsTableWidget.setItem(idx, 3, userItem)
+            # Cleanup
+            cleanupItem = QTableWidgetItem(col[5].rstrip())
+            self.snapshotsTableWidget.setItem(idx, 4, cleanupItem)
+            # Description
+            descriptionItem = QTableWidgetItem(col[6].rstrip())
+            self.snapshotsTableWidget.setItem(idx, 5, descriptionItem)
+
+        header = self.snapshotsTableWidget.horizontalHeader()
+        header.setSectionResizeMode(QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(5, QHeaderView.Stretch)
+        self.snapshotsTableWidget.setSelectionBehavior(QAbstractItemView.SelectRows)
+        if len(lines) > 0:
+            self.snapshotsTableWidget.selectRow(0)
+
+    def getSnapshotLines(self):
+        output = sp.getoutput(self.commands['snapper-list'])
+        lines = output.splitlines()
+        return lines
+
+    def clearData(self):
+        for header in self.data:
+            self.data[header].clear()
+
+    def showAboutBox(self):
+        self.aboutBox.show()
+
 
 if __name__ == '__main__':
     os.environ['QT_LOGGING_RULES'] = "qt5ct.debug=false"
     os.environ['QT_API'] = 'pyqt5'
     window = mainWindow()
-
-
