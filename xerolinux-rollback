@@ -275,6 +275,7 @@ class mainWindow(QMainWindow):
 
 
 if __name__ == '__main__':
+    os.environ['QT_DEBUG_PLUGINS'] = '1'
     os.environ['QT_LOGGING_RULES'] = "qt5ct.debug=false"
     os.environ['QT_API'] = 'pyqt5'
     window = mainWindow()
