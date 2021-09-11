@@ -1,4 +1,4 @@
-current_version = '0.1.4'
+current_version=0.2.5
 
 
 class Version:
