@@ -3,6 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ab7be170-e96e-4532-850b-afa4f0faff2a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PKGBUILD" beforeDir="false" afterPath="$PROJECT_DIR$/PKGBUILD" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/command_runner/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/command_runner/elevate.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/command_runner/requirements.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/xerolinux-rollback" beforeDir="false" afterPath="$PROJECT_DIR$/xerolinux-rollback" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
