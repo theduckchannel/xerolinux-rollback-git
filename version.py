@@ -1,4 +1,5 @@
-current-version = '0.1.4'
+current_version = '0.1.4'
+
 
 class Version:
 
@@ -8,4 +9,4 @@ class Version:
 
     @staticmethod
     def getVersion():
-        return '0.1.4'
+        return current_version
