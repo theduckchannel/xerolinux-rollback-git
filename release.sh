@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OLDVERSION=$(grep '^current_version.*' version.py)
+OLDVERSION=$(grep '^current_version.*' 'xerolinux-rollback')
 
 echo "Old Version ====> $OLDVERSION"
 

@@ -3,10 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ab7be170-e96e-4532-850b-afa4f0faff2a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aboutbox.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/xerolinux-logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/xerolinux-logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainwindow.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/version.py" beforeDir="false" afterPath="$PROJECT_DIR$/version.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PKGBUILD" beforeDir="false" afterPath="$PROJECT_DIR$/PKGBUILD" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/about.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/xerolinux-about.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release.sh" beforeDir="false" afterPath="$PROJECT_DIR$/release.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xerolinux-rollback" beforeDir="false" afterPath="$PROJECT_DIR$/xerolinux-rollback" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,6 +22,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1xsCtQDYcP8ZUtAul9d9VyNxhBi" />
   <component name="ProjectViewState">
