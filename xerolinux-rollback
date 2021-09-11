@@ -8,7 +8,7 @@ from qtpy.QtCore import *
 import psutil
 
 # Current version
-current_version='0.1.22'
+current_version='0.1.24'
 
 
 class Version:
@@ -129,7 +129,7 @@ class mainWindow(QMainWindow):
 
     def __init__(self):
         super().__init__(parent=None)
-        self.setWindowTitle(f'Xerolinux Rollback Utility version {Version.getVersion()}')
+        self.setWindowTitle(f'Xerolinux Rollback Utility v. {Version.getVersion()}')
         self.setFixedSize(QSize(1024, 768))
         ###################################################
         # Vertical Layout ###
