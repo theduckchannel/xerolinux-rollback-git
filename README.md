@@ -6,14 +6,12 @@
 
 ## Description
 
-This is a oficial BTRFS Rollback utility from Xerolinux Linux Distro. 
+This is a oficial BTRFS Rollback Snaphots Utility from Xerolinux Linux Distro. 
 
 ## Instalation
 
 ```console
 $ paru -S xerolinux-rollback-git
 ```
-
-
 
 
