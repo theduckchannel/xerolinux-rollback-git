@@ -3,6 +3,6 @@ Type=Application
 Exec=/usr/bin/xerolinux_rollback
 Path=/usr/bin
 Comment=Xerolinux Rollback Utility
-Icon=/usr/share/icons/hicolor/48x48/apps/xerolinux-logo_icon.png
+Icon=/usr/share/xerolinux-rollback/images/xerolinux-logo.png
 Categories=System;
 Name=xerolinux_rollback

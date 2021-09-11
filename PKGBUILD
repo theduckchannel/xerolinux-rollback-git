@@ -13,6 +13,7 @@ conflicts=('xerolinux-rollback')
 backup=(etc/xerolinux-rollback.conf)
 source=(git+"$url.git")
 md5sums=('SKIP')
+_destination="/usr/share/$pkgname"
 
 pkgver() {
 	cd "xerolinux-rollback"
@@ -22,5 +23,8 @@ pkgver() {
 package() {
     cd "xerolinux-rollback"
     install -Dm755  "xerolinux-rollback" -t "$pkgdir/usr/bin/"
+    install -Dm755  "rollback-frontend" -t "$pkgdir/usr/bin/"
+    install -d  "images" -t "$_destination/$pkgname"
+    install -d  "xerolinux-rollback.desktop" -t "/usr/share/applications/"
     install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
