@@ -8,7 +8,7 @@ from qtpy.QtCore import *
 import psutil
 
 # Current version
-current_version='0.1.20'
+current_version='0.1.21'
 
 
 class Version:
@@ -158,7 +158,7 @@ class mainWindow(QMainWindow):
         aboutPushButton = QPushButton()
         aboutPushButton.setIcon(QIcon('/usr/share/xerolinux-rollback-git/images/xerolinux-about.png'))
         aboutPushButton.setIconSize(QSize(32, 32))
-        aboutPushButton.setFixedSize(QSize(32, 32))
+        aboutPushButton.setFixedSize(QSize(42, 42))
         # aboutPushButton.setStyleSheet("background-color: rgba(255, 255, 255, 0);")
         aboutPushButton.setCursor(QCursor(Qt.PointingHandCursor))
         aboutPushButton.clicked.connect(self.showAboutBox)
