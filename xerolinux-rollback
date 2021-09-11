@@ -8,7 +8,7 @@ from qtpy.QtCore import *
 import psutil
 
 # Current version
-current_version='0.1.24'
+current_version='0.1.25'
 
 
 class Version:

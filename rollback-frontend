@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ -z $1 ] || [ -z $2 ]; then
+    echo "No arguments provided"
+    exit 1
+fi
+
 pauseforkey() {
     echo -n "Press any key to Reboot your system!"
     read -n 1 -s -r -p ""
