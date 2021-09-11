@@ -1,5 +1,5 @@
 pkgname=xerolinux-rollback-git
-pkgver=0.1.5
+pkgver=r65.5a1efd1
 pkgrel=1
 pkgdesc='Xerolinux Rollback Utility to snapshot using the layout proposed in the snapper arch wiki page https://wiki.archlinux.org/index.php/Snapper#Suggested_filesystem_layout'
 arch=('any')
@@ -13,7 +13,6 @@ conflicts=('xerolinux-rollback')
 backup=(etc/xerolinux-rollback.conf)
 source=(git+"$url.git")
 md5sums=('SKIP')
-_destination="/usr/share/$pkgname"
 
 pkgver() {
 	cd "xerolinux-rollback"
@@ -24,7 +23,8 @@ package() {
     cd "xerolinux-rollback"
     install -Dm755  "xerolinux-rollback" -t "$pkgdir/usr/bin/"
     install -Dm755  "rollback-frontend" -t "$pkgdir/usr/bin/"
-    install -d  "images" -t "$_destination/$pkgname"
-    install -d  "xerolinux-rollback.desktop" -t "/usr/share/applications/"
+    install -Dm644  "images/xerolinux-logo.png" -t "$pkgdir/usr/share/$pkgname/images"
+    install -Dm644  "images/xerolinux-about.png" -t "$pkgdir/usr/share/$pkgname/images"
+    install -Dm644  "xerolinux-rollback.desktop" -t "$pkgdir/usr/share/applications/"
     install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
