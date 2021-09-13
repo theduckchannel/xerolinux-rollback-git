@@ -8,7 +8,7 @@ from qtpy.QtCore import *
 import psutil
 
 # Current version
-current_version='0.1.31'
+current_version='0.1.32'
 
 
 class Version:
@@ -23,6 +23,30 @@ class Version:
 
 
 class Partition:
+
+    @staticmethod
+    def isSnapperPresentAndConfigured():
+        retValue = False
+        outputStatus = sp.getstatusoutput('which snapper')
+        if outputStatus[0] == 0:
+            # verifify if config ok
+            outputStatus = sp.getstatusoutput('snapper list')
+            if outputStatus[0] == 0:
+                retValue = True
+
+
+        return retValue
+
+    @staticmethod
+    def getFsType():
+        partitions = psutil.disk_partitions()
+        fstype = 'unknow'
+        for partition in partitions:
+            if partition.mountpoint == '/':
+                fstype = partition.fstype
+                break
+
+        return fstype
 
     @staticmethod
     def getRootPartition():
@@ -199,9 +223,18 @@ class mainWindow(QMainWindow):
         centralWidget.setLayout(verticalLayout)
         self.setCentralWidget(centralWidget)
         ############
-        self.show()
-        self.refreshSnapshotsList()
-        sys.exit(self.app.exec())
+        if Partition.getFsType()!='btrfs':
+            Alert('Error!', 'This app is made for btrfs filesystems only!').exec()
+            self.exitApp()
+
+        print('passou por aqui')
+        if not Partition.isSnapperPresentAndConfigured():
+            Alert('Error!', 'You don´t have any snapshots. Did you configure snapper to fire snapshots automatically?').exec()
+            self.exitApp()
+        else: 
+            self.show()
+            self.refreshSnapshotsList()
+            sys.exit(self.app.exec())
 
     def exitApp(self):
         self.app.quit()
