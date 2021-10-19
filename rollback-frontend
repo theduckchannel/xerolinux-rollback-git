@@ -24,10 +24,10 @@ sudo mkdir /$TEMPDIR
 sudo mount -t btrfs -o subvolid=5 $ROOTPART /$TEMPDIR
 
 # Change rollback-git config file
-sudo sed -i "s/subvolid5 =.*/subvolid5 = \/$TEMPDIR/" /etc/rollback.conf
+sudo sed -i "s/mountpoint =.*/mountpoint = \/$TEMPDIR/" /etc/snapper-rollback.conf
 
 # Fire Rollback
-sudo rollback $ID
+sudo snapper-rollback $ID
 
 # konsole --hide-menubar --hide-tabbar -e 
 # Umount and delete temporary directory
